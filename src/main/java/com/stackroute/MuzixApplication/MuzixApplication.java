@@ -2,11 +2,17 @@ package com.stackroute.MuzixApplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-public class MuzixApplication {
+@EnableSwagger2
+public class
 
-	public static void main(String[] args) {
+MuzixApplication {
+
+	public static void main(String[] args)
+
+	{
 		SpringApplication.run(MuzixApplication.class, args);
 	}
 

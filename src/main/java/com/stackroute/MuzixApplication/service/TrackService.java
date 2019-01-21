@@ -15,4 +15,5 @@ public interface TrackService
     public boolean deleteTrack(int id) throws TrackNotFoundException;
 
     public Track updateTrack(Track track) throws TrackAlreadyExistsException;
+    public Track trackFindByName(String name);
 }

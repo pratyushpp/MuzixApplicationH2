@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="api/v1")
+@RequestMapping(value="api/v1/")
 
 public class TrackController
 {
@@ -78,32 +78,14 @@ public class TrackController
 
     }
 
-    @DeleteMapping("track/{id}")
-
-    public ResponseEntity<?> deleteTrack(@PathVariable("id") int id)
-
+    @DeleteMapping("/track/{id}")
+    public ResponseEntity<?> deleteTrack(@PathVariable("id") int id)throws TrackNotFoundException
     {
-
         ResponseEntity responseEntity;
 
-        try {
-
-            trackService.deleteTrack(id);
-
-            responseEntity = new ResponseEntity<String>("successfully deleted", HttpStatus.OK);
-
-        }
-
-        catch(TrackNotFoundException e)
-
-        {
-
-            responseEntity = new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
-
-        }
-
+        trackService.deleteTrack(id);
+        responseEntity= new ResponseEntity<String>("deleted successfully",HttpStatus.OK);
         return responseEntity;
-
     }
 
 

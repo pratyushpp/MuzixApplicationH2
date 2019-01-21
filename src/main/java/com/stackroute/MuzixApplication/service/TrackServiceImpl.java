@@ -1,6 +1,7 @@
 package com.stackroute.MuzixApplication.service;
 import com.stackroute.MuzixApplication.domain.Track;
 import com.stackroute.MuzixApplication.exceptions.TrackAlreadyExistsException;
+import com.stackroute.MuzixApplication.exceptions.TrackNotFoundException;
 import com.stackroute.MuzixApplication.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,12 +41,15 @@ public class TrackServiceImpl implements TrackService
         return trackRepository.findAll();
 
     }
-
     @Override
-    public boolean deleteTrack(int id) {
-        return false;
+    public boolean deleteTrack(int id) throws TrackNotFoundException {
+        if(!trackRepository.existsById(id))
+    {
+        throw new TrackNotFoundException("track is not in the database");
     }
-
+        trackRepository.deleteById(id);
+        return true;
+    }
 
      @Override
 
@@ -53,4 +57,10 @@ public class TrackServiceImpl implements TrackService
     {
         return track;
     }
+    @Override
+    public Track trackFindByName(String name) {
+        System.out.println(trackRepository.findByName(name));
+        return trackRepository.findByName(name);
+    }
+
 }
